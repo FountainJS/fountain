@@ -10,6 +10,7 @@ git:
   submodules: false
 
 cache:
+  timeout: 600
   directories:
     - node_modules
     - fountain-generator/node_modules
