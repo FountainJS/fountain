@@ -45,8 +45,9 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
         yield linter.linterTest(options);
       });
 
-      it('should run unit tests', function *() {
-        yield unit.unitTests();
+      it('should run "gulp test"', function *() {
+        const result = yield gulp.test();
+        yield unit.unitTests(result);
       });
 
       it('should run "gulp serve" and e2e on number of Techs listed', function *() {
