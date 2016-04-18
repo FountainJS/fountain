@@ -7,6 +7,7 @@ const yeoman = require('./helpers/yeoman-helper');
 const wdio = require('./helpers/wdio-helper');
 const sauce = require('./helpers/saucelabs-helper');
 const linter = require('./helpers/linter-helper');
+const unit = require('./helpers/unit-helper');
 
 describe('fountain interactive integration test with saucelabs and webdriver.io', function () {
   this.timeout(0);
@@ -20,6 +21,10 @@ describe('fountain interactive integration test with saucelabs and webdriver.io'
   it(`should test linter on `, function *() {
     const options = yield yeoman.run();
     yield linter.linterTest(options);
+  });
+
+  it('should run unit tests', function *() {
+    yield unit.unitTests();
   });
 
   it(`should work with interactive options`, function *() {
