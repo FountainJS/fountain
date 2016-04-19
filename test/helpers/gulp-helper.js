@@ -3,7 +3,7 @@
 const exec = require('../../scripts/exec');
 const spy = require('through2-spy');
 const regex = /\[BS\] Access URLs:\n -*\n.*\n *External: ([^\s]*)/;
-const testRegex = /Executed ([^\s]*) of (\1)/;
+const testRegex = /Finished 'test'/;
 
 let serveProcess = null;
 
@@ -39,7 +39,8 @@ exports.test = function () {
       logs += chunk.toString();
       const result = testRegex.exec(logs);
       if (result !== null) {
-        resolve(result.input);
+        resolve(logs);
+        testProcess.kill('SIGTERM');
       }
     })).pipe(process.stdout);
   });
