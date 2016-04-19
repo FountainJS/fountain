@@ -30,7 +30,8 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
   });
 
   it('should run unit tests', function *() {
-    yield unit.unitTests();
+    const result = yield gulp.test();
+    unit.unitTests(result);
   });
 
   it(`should work with ${options.framework}, ${options.modules}, ${options.js}`, function *() {
