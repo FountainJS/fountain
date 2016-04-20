@@ -4,6 +4,16 @@ node_js:
   - '5'
   - '4'
 
+# Use Ubuntu Trusty 14.04
+sudo: required
+dist: trusty
+
+# Use Chrome as default browser
+before_install:  
+ - export CHROME_BIN=/usr/bin/google-chrome
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+
 # Deactive fetch submodules by Travis. (e.g. before_script)
 git:
   submodules: false
