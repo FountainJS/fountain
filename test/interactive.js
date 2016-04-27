@@ -31,10 +31,29 @@ describe('fountain interactive integration test with saucelabs and webdriver.io'
   it(`should work with interactive options`, function *() {
     const url = yield gulp.serve();
     yield wdio.techsTest(url);
+    console.log('End of test');
+    gulp.killServe();
+    console.log('Server killed');
+  });
+
+  it('should run "gulp serve:dist" and e2e on number of Techs listed', function *() {
+    console.log(`Running dist test with ${options.framework}, ${options.modules}, ${options.js}`);
+    const url = yield gulp.serveDist();
+    yield wdio.techsTest(url);
+    console.log('End of test');
+    gulp.killServe();
+    console.log('Server killed');
+  });
+
+  it('should run live reload test', function *() {
+    const url = yield gulp.serve();
+    yield live.liveReload(url, options, fountain);
+    console.log('End of test');
+    gulp.killServe();
+    console.log('Server killed');
   });
 
   after(function *() {
-    gulp.killServe();
     yield wdio.close();
     yield sauce.close();
   });
