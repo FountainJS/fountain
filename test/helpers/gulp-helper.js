@@ -8,12 +8,20 @@ const testRegex = /Finished 'test'/;
 let serveProcess = null;
 
 exports.serve = function serve() {
+  return exports.execServe(['serve']);
+};
+
+exports.serveDist = function serveDist() {
+  return exports.execServe(['serve:dist']);
+};
+
+exports.execServe = function execServe(command) {
   return new Promise(resolve => {
     let logs = '';
     if (serveProcess !== null) {
       console.warn('Server process still running !!!!');
     }
-    serveProcess = exec('gulp', ['serve'], {stdio: 'pipe'}).process;
+    serveProcess = exec('gulp', command, {stdio: 'pipe'}).process;
     serveProcess.stderr.pipe(process.stderr);
     serveProcess.stdout.pipe(spy(chunk => {
       logs += chunk.toString();

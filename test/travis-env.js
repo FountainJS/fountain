@@ -37,7 +37,18 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
   it(`should work with ${options.framework}, ${options.modules}, ${options.js}`, function *() {
     const url = yield gulp.serve();
     yield wdio.techsTest(url);
+    console.log('End of test');
     gulp.killServe();
+    console.log('Server killed');
+  });
+
+  it('should run "gulp serve:dist" and e2e on number of Techs listed', function *() {
+    console.log(`Running dist test with ${options.framework}, ${options.modules}, ${options.js}`);
+    const url = yield gulp.serveDist();
+    yield wdio.techsTest(url);
+    console.log('End of test');
+    gulp.killServe();
+    console.log('Server killed');
   });
 
   after(function *() {

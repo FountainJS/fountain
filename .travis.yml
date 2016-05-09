@@ -4,19 +4,18 @@ node_js:
   - '5'
   - '4'
 
-# Use Ubuntu Trusty 14.04
-sudo: required
-dist: trusty
-
-# Use Chrome as default browser
-before_install:
- - export CHROME_BIN=/usr/bin/google-chrome
- - export DISPLAY=:99.0
- - sh -e /etc/init.d/xvfb start
-
 # Deactive fetch submodules by Travis. (e.g. before_script)
 git:
   submodules: false
+
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+env:
+  - FOUNTAIN_FRAMEWORK=react
+  - FOUNTAIN_FRAMEWORK=angular1
+  - FOUNTAIN_FRAMEWORK=angular2  
 
 # Enable cache for all node_modules + needed globals packages
 cache:
@@ -40,10 +39,11 @@ cache:
 
 # Configure Sauce Labs fot e2e tests
 addons:
-   sauce_connect:
-     username: "Swiip"
-     access_key:
-       secure: "xOc4vSbmwnufZY8MY/4pCzZX+6smPvgG6wHptArP1KIeBMpk6MG+LL8a5w23rVpNJzMO1iIRFDDZ5sAkrbvsXOKxZBkF123mG0JPvpYNhCQHxBgnqLvFTXeWoTb1G1dhhy1NklO4Y58ndLroiQ/ZkyPTFLiMv6uFU8GY7WeP3dw6VTCkXToGUgDNiW8bitGaiadVhVa3XzK/lNs9o6dAa6kl+bZ/UNCtrFFUmPFkcsY+99f37RzwRuzYWXEvguPY2N5zmuiohFL/XSlu73LeuF5UWxGHUtKKHiyt4VmNZCp2b3oL8EqtyBKFvAZJI5m9jfMgZ5SWgo+wBGZ/5N6nvDm3QsKoSQ6uJ0v0mEweysgh2pQ7abL5fvzF8mrDBZVoPyp/cOzTiUbLGRg02NsTxLtlKbG1rB8sO8qsyUcypFaEPzgCGIUlA/ibtkAOW7cVvsHiG5N3MFDOSHrwFFNEpyhIHdMj3VTU9tyPejWgIi25i6oUsscnAx/osrn2CgI5OieZlYn9M+HqEghMo/ikCNBQAwVr8c/VF6Z/lau1IPHOJg9//aMQwwrrnrgzzyH5vXXqvN9Yc/rxPi9ZPRGg0ImMTM4gNcZr/nVQRgqQ3nB/oqkEqZRmAK8HenZT8S6B1UCUhYx4zkLVsWXAuPVkPCL1K7jsYQHR3R7ygAYcgT4="
+  firefox: "46.0"
+  sauce_connect:
+    username: "Swiip"
+    access_key:
+      secure: "xOc4vSbmwnufZY8MY/4pCzZX+6smPvgG6wHptArP1KIeBMpk6MG+LL8a5w23rVpNJzMO1iIRFDDZ5sAkrbvsXOKxZBkF123mG0JPvpYNhCQHxBgnqLvFTXeWoTb1G1dhhy1NklO4Y58ndLroiQ/ZkyPTFLiMv6uFU8GY7WeP3dw6VTCkXToGUgDNiW8bitGaiadVhVa3XzK/lNs9o6dAa6kl+bZ/UNCtrFFUmPFkcsY+99f37RzwRuzYWXEvguPY2N5zmuiohFL/XSlu73LeuF5UWxGHUtKKHiyt4VmNZCp2b3oL8EqtyBKFvAZJI5m9jfMgZ5SWgo+wBGZ/5N6nvDm3QsKoSQ6uJ0v0mEweysgh2pQ7abL5fvzF8mrDBZVoPyp/cOzTiUbLGRg02NsTxLtlKbG1rB8sO8qsyUcypFaEPzgCGIUlA/ibtkAOW7cVvsHiG5N3MFDOSHrwFFNEpyhIHdMj3VTU9tyPejWgIi25i6oUsscnAx/osrn2CgI5OieZlYn9M+HqEghMo/ikCNBQAwVr8c/VF6Z/lau1IPHOJg9//aMQwwrrnrgzzyH5vXXqvN9Yc/rxPi9ZPRGg0ImMTM4gNcZr/nVQRgqQ3nB/oqkEqZRmAK8HenZT8S6B1UCUhYx4zkLVsWXAuPVkPCL1K7jsYQHR3R7ygAYcgT4="
 
 # Prepare build:
 #   * Backup node_modules in ./temp/ provided by caches Travis
