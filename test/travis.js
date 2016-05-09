@@ -17,7 +17,7 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
   });
 
   const combinations = product([
-    ['react', 'angular1', 'angular2'],
+    [process.env.FOUNTAIN_FRAMEWORK],
     ['webpack', 'systemjs', 'inject'],
     ['babel', 'js', 'typescript']
   ])
@@ -63,10 +63,6 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
         console.log('End of test');
         gulp.killServe();
         console.log('Server killed');
-      });
-
-      after(function *() {
-        gulp.killServe();
       });
     });
   });

@@ -51,8 +51,6 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
     console.log('Server killed');
   });
 
-  });
-
   after(function *() {
     yield wdio.close();
   });
