@@ -28,26 +28,21 @@ The issue should contain the details about your configuration at the moment you 
 - In order to easily reproduce the bug, you should provide a replication project (Github, Plunker...)
 
 In any case, every issue must follow this template: 
+> #### Configuration
+A clear description of the configuration of the project(s) you met the issue in
 
->* **Configuration of the project(s) you met the issue in**
+> #### Version
+Version of the generator(s) you are using
 
->* **Version of the generator(s) you are using**
+> #### Node/NPM/OS versions
 
->* **Node/NPM/OS versions**
+> #### Expected and current behaviors
+Explain what is wrong in the actual behavior and how you'd expect it to be
 
->* **Current behavior**
+> #### How to reproduce the bug
+You can link a Github project, https://plnkr.co or something else.
 
->* **Expected/desired behavior**
-
->* **Other information**
-
->* **How to reproduce the bug (Github project, https://plnkr.co...)**
-
->* **Current behavior**
-
->* **Expected/desired behavior**
-
->* **Other information**
+> #### Other information
 
 ## <a name="install"></a>Environment
 
@@ -135,27 +130,23 @@ If you want to propose a fix or a feature, do as follow:
 
 In any case, every pull request must follow this template: 
 
->* **Please check if the PR fulfills these requirements**  
-    [ ] Travis tests for the changes are green for the meta-repo  
-    [ ] Travis tests for the changes are green for the repository you contribute to
+> #### Please check if the PR fulfills these requirements  
+  - [ ] Travis tests for the changes are green for the meta-repo  
+  - [ ] Travis tests for the changes are green for the repository you contribute to
 
->* **What kind of change does this PR introduce ?** (Bug fix, feature, docs update, ...)
+> #### Changes
+What kind of change does this PR introduce ? (Bug fix, feature, docs update, ...)
 
+> #### Current behavior
+What is the current behavior ? (You can also link to an open issue here)
 
+> #### New behavior
+What is the new behavior (if this is a feature change) ?
 
->* **What is the current behavior ?** (You can also link to an open issue here)
+> #### Does this PR introduce a breaking change ?
+What changes might users need to make in their application due to this PR ?
 
-
-
->* **What is the new behavior (if this is a feature change) ?**
-
-
-
->* **Does this PR introduce a breaking change ?** (What changes might users need to make in their application due to this PR?)
-
-
-
->* **Other information**:
+> #### Other information
 
 
 ## <a name="build"></a> Build tests

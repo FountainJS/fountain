@@ -1,19 +1,15 @@
-* **Configuration of the project(s) you met the issue in**
+#### Configuration
+A clear description of the configuration of the project(s) you met the issue in
 
-* **Version of the generator(s) you are using**
+#### Version
+Version of the generator(s) you are using
 
-* **Node/NPM/OS versions**
+#### Node/NPM/OS versions
 
-* **Current behavior**
+#### Expected and current behaviors
+Explain what is wrong in the actual behavior and how you'd expect it to be
 
-* **Expected/desired behavior**
+#### How to reproduce the bug
+You can link a Github project, https://plnkr.co or something else.
 
-* **Other information**
-
-* **How to reproduce the bug (Github project, https://plnkr.co...)**
-
-* **Current behavior**
-
-* **Expected/desired behavior**
-
-* **Other information**
+#### Other information

@@ -2,11 +2,11 @@ Usage
 =====
 
 ## Requirements
-
 You need at least Node `v4.0.0` and npm `2`.
 
 ## Create your project
-Install the required tools: yo, gulp, bower
+You only need the tool(s) corresponding with the technologies you'll choose with the generator.  
+Install the needed tools within yo, jspm, typings , bower.
 
 ```sh
 $ npm install -g yo jspm typings bower
@@ -41,20 +41,22 @@ yo fountain-webapp
 
 ## Use Gulp tasks
 
-- gulp or gulp build to build an optimized version of your application in /dist
-- gulp serve to launch a browser sync server on your source files
-- gulp serve:dist to launch a server on your optimized application
-- gulp test to launch your unit tests with Karma
-- gulp test:auto to launch your unit tests with Karma in watch mode
+- `gulp` or `gulp build` to build an optimized version of your application in /dist
+- `gulp serve` to launch a browser sync server on your source files
+- `gulp serve:dist` to launch a server on your optimized application
+- `gulp test` to launch your unit tests with Karma
+- `gulp test:auto` to launch your unit tests with Karma in watch mode
 
 ## Directory structure
 
-Every component of the app get its own directory which contains the component code (depending on the framework, it can be `*.(js|ts)` or/and `*.component.(js|ts)` or/and `*.controller.(js|ts)` or/and `*.service.(js|ts)` or/and `*.directive.(js|ts)` and `*.spec.(js|ts)`.
+Every component of the app get its own directory which contains the component code (depending on the framework, it can be `*.(js|ts)` or/and `*.component.(js|ts)` or/and `*.controller.(js|ts)` or/and `*.service.(js|ts)` and `*.spec.(js|ts)`.
 
 - If you are coding in Angular 1.4 style, you can read 
 [Best Practice Recommendations for Angular App Structure](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub). 
 - Concerning Angular ≥ 1.5 and Angular 2, you can read [Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/). 
 - For React, you can read [Airbnb React Style Guide](https://github.com/airbnb/javascript/tree/master/react).
+
+**WARNING**: this directory structure implies you are using `Techs` template of the app. If not, it will be slightly different.
 
 <pre>
 ├──  conf/
@@ -120,7 +122,7 @@ Every component of the app get its own directory which contains the component co
 
 ## Configuration
 
-You can file the configuration files in `conf/`.
+You can find the configuration files in `conf/`.
 
 * *browsersync.conf(-dist).js*: define which folder to serve
 * *gulp.conf.js*: contains the variables used in other gulp files which defines tasks
@@ -131,6 +133,9 @@ You can file the configuration files in `conf/`.
 
 ## Gulpfile
 
+As the `gulp_tasks` folder contains all gulp tasks used by the project, the `gulpfile.js` centralize all processes by chaining the actual tasks.
+
+It's made possible by the new Gulp 4 which allow to define precise task series and parallelization.
 
 
 ## Questions the generator will ask
@@ -139,4 +144,4 @@ You can file the configuration files in `conf/`.
 - *Modules manager*: Webpack with NPM, SystemJS with JSPM, None with Bower injection
 - *CSS preprocessor*: SASS, Less, CSS
 - *JS preprocessor*: ES2015 with Babel, Pure old JavaScript, TypeScript
-- *Sample app*: A working landing page, A simple Hello Word, a Redux TodoApp
+- *Sample app*: A working landing page, A simple Hello Word, A TodoMVC
