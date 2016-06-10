@@ -7,6 +7,7 @@ const saucelabsCreds = require('../saucelabs.creds.json');
 const sclOptions = {
   username: saucelabsCreds.user,
   accessKey: saucelabsCreds.key,
+  tunnelIdentifier: saucelabsCreds.user,
   verbose: true
 };
 

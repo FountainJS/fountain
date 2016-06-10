@@ -2,6 +2,7 @@
 
 const expect = require('chai').expect;
 const webdriverio = require('webdriverio');
+const os = require('os');
 
 const wdioOptions = {
   logLevel: 'debug',
@@ -9,7 +10,8 @@ const wdioOptions = {
   desiredCapabilities: {
     browserName: 'chrome',
     idleTimeout: 1000,
-    maxDuration: 3600
+    maxDuration: 3600,
+    name: os.hostname()
   }
 };
 
