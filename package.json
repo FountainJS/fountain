@@ -38,9 +38,6 @@
     "yeoman-test": "^1.1.0"
   },
   "eslintConfig": {
-    "extends": "xo-space/esnext",
-    "env": {
-      "mocha": true
-    }
+    "extends": "xo-space/esnext"
   }
 }
