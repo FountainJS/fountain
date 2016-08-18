@@ -31,6 +31,9 @@
 [submodule "generator-fountain-tslint"]
 	path = generator-fountain-tslint
 	url = git@github.com:FountainJS/generator-fountain-tslint.git
+[submodule "generator-fountain-vue"]
+	path = generator-fountain-vue
+	url = git@github.com:FountainJS/generator-fountain-vue.git
 [submodule "generator-fountain-webapp"]
 	path = generator-fountain-webapp
 	url = git@github.com:FountainJS/generator-fountain-webapp.git
