@@ -1,52 +1,73 @@
 language: node_js
+
 node_js:
-- '4'
-- stable
-env:
-  global:
-  - GIT_NAME: Travis CI
-  - GIT_EMAIL: nobody@nobody.org
-  - GITHUB_REPO: FountainJS/fountain
-  - secure: 3JCPrv2VfF2GE7O/tfbCsjXhg3vNKO7EsQ63aXf65g3iy1oWZGLchhzYJkJgfbYPp83PEicMF19ByAaa5x8nlxn9z/Ea75cSQzKZgsORcy/sA+6urM0jWwocSN6y7x2bUB5lGYXV1UdsM+UwFSoWB4IF/jNIpmHh31UaRHOGSoH3WiTYW4aR/59QXQqPECohnwy8B+5TMr88fCM7ZodMF6SHEAj+LAHHR3Sp+xRjHzt3S17VrWryvp7XC3rvxTZ2DoBvTNfZcs8mr45BIdKbg/Pa5CsvlnIy3EpZDuMQPePrXdTHpxhRs6/vMmUZnmiwzrgJN7Ne8hvpgNLRl6o3+4UAUGeOYfYgj0/22oQy5U2ojz1/fykBQGXxcKLrTHzptYXkBGyFIuKD2HuU2eSMGSo+PoELmJpg5nbwfGR22BHJOsF1H1/dYNvAhPGfagRvgDZE0xoY0GQPPj5M/Rlqi/WOqX3xnlHxnuAucmNrNFknPf+S5u/aGMOcvq5ivsZ7oDI0S874MdDZQO2z6MakhAa0QChCzM/usoqB38PSHfu/5WHqbY0AHWiNyFphkuejhw/ad3GKhX9YBTt3D5YaxH5bchgQrAyAeDF8MnPV+lbIw+eBoLIcfayic5C3dd3hSFXFZx2Kqs4VXbv52hR0JvgpU82AS4WwU+lah1vwbjw=
+  - '4'
+  - stable
+
+# Deactive fetch submodules by Travis. (e.g. before_script)
 git:
   submodules: false
-before_install:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
+
+env:
+  global:
+    - GIT_NAME: Travis CI
+    - GIT_EMAIL: nobody@nobody.org
+    - GITHUB_REPO: FountainJS/fountain
+    - secure: 3JCPrv2VfF2GE7O/tfbCsjXhg3vNKO7EsQ63aXf65g3iy1oWZGLchhzYJkJgfbYPp83PEicMF19ByAaa5x8nlxn9z/Ea75cSQzKZgsORcy/sA+6urM0jWwocSN6y7x2bUB5lGYXV1UdsM+UwFSoWB4IF/jNIpmHh31UaRHOGSoH3WiTYW4aR/59QXQqPECohnwy8B+5TMr88fCM7ZodMF6SHEAj+LAHHR3Sp+xRjHzt3S17VrWryvp7XC3rvxTZ2DoBvTNfZcs8mr45BIdKbg/Pa5CsvlnIy3EpZDuMQPePrXdTHpxhRs6/vMmUZnmiwzrgJN7Ne8hvpgNLRl6o3+4UAUGeOYfYgj0/22oQy5U2ojz1/fykBQGXxcKLrTHzptYXkBGyFIuKD2HuU2eSMGSo+PoELmJpg5nbwfGR22BHJOsF1H1/dYNvAhPGfagRvgDZE0xoY0GQPPj5M/Rlqi/WOqX3xnlHxnuAucmNrNFknPf+S5u/aGMOcvq5ivsZ7oDI0S874MdDZQO2z6MakhAa0QChCzM/usoqB38PSHfu/5WHqbY0AHWiNyFphkuejhw/ad3GKhX9YBTt3D5YaxH5bchgQrAyAeDF8MnPV+lbIw+eBoLIcfayic5C3dd3hSFXFZx2Kqs4VXbv52hR0JvgpU82AS4WwU+lah1vwbjw=
+
+# Enable cache for all node_modules
 cache:
   timeout: 600
   directories:
-  - node_modules
-  - fountain-generator/node_modules
-  - generator-fountain-angular1/node_modules
-  - generator-fountain-angular2/node_modules
-  - generator-fountain-browsersync/node_modules
-  - generator-fountain-eslint/node_modules
-  - generator-fountain-gulp/node_modules
-  - generator-fountain-inject/node_modules
-  - generator-fountain-karma/node_modules
-  - generator-fountain-react/node_modules
-  - generator-fountain-systemjs/node_modules
-  - generator-fountain-tslint/node_modules
-  - generator-fountain-webapp/node_modules
-  - generator-fountain-webpack/node_modules
-  - test/deps
+    - node_modules
+    - fountain-generator/node_modules
+    - generator-fountain-angular1/node_modules
+    - generator-fountain-angular2/node_modules
+    - generator-fountain-browsersync/node_modules
+    - generator-fountain-eslint/node_modules
+    - generator-fountain-gulp/node_modules
+    - generator-fountain-inject/node_modules
+    - generator-fountain-karma/node_modules
+    - generator-fountain-react/node_modules
+    - generator-fountain-systemjs/node_modules
+    - generator-fountain-tslint/node_modules
+    - generator-fountain-webapp/node_modules
+    - generator-fountain-webpack/node_modules
+    - test/deps
+
 addons:
+  # Install Firefox
   firefox: '46.0'
+  # Configure Sauce Labs fot e2e tests
   sauce_connect:
     username: "zckrs"
     access_key:
       secure: "GRCFdTA5lYr51KaW4UAMV/oDxnm0CoPeYs1hZ2fynvv24X9KJhpukCNZNfYBVRg31gMUxGSzPOllFaHNBoExwb7/F7nndpG2FtBMlp8K22iGYDr8flRFJhd+5KJJRO4ed7z7hfHrbIwq3E2anoByh0NIFn5YO4FDwnf2ObFlFLAtyGppcTvr/UWpqzovFZLlAwU89YRZIFh7nzFUT2IU2BEWlR0TvVIhhNflpw7oScQDNtptZbGVKrJAMWT5VO15gTd97LKjyluHedZ6xWsN8TlOG2PSykI+7YYbz5Sat9l6PfBV2G4Nk5MOXivvW5mHZmXKcdGTfAoDGu9VSYFC+JdeW6DfOvS/ALagDaqmqKUyUY9eWRmt0UEMNoKhiCCe8agW2J3SiVaGVcobtCoB01nEU9iBmaVKAoZu9HbirSyEyc4j3DuQl8gAHEm/JOoTRFVIB/R7t9DPOjuFN5tHnGwO1tjkQtjCVuIz+feC3+EL819zuYCjzJ39MbQJZIiDtrsuBTkWj/SU5ECJgLyTM+qsI87XGVhtsD4UaWTCehvjs915yyLmGwm/D7dRHtno624e0zJo2Y4HHFOcKj1YXf2DaJI8NsApcyfOSWHg/O3yTURcNC/hKQ1avPDtaLpPYG3b4bpU4ubfyZCjzgjELEC7SpiL3AV17ieBCr2h3tM="
-before_script:
-- node test/cache/backup-node_modules.js
-- rm -rf fountain-generator/ generator-fountain-*/
-- sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-- git submodule update --init --recursive
-- node test/cache/restore-node_modules.js
-- npm install --global npm@latest
-- npm run linkAll
-script:
-- npm test
-- node ./scripts/bin/deploy
+
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
 before_cache:
-- npm run unlinkAll
+  - npm run unlinkAll
+
+# Prepare build:
+#   * Backup node_modules in ./temp/ provided by caches Travis
+#   * Remove all fountain directories
+#   * Replace protocol for git modules
+#   * Fetch git modules
+#   * Restore node_modules
+#   * Generate all symlink across generators
+#   * Install global packages needed
+before_script:
+  - node test/cache/backup-node_modules.js
+  - rm -rf fountain-generator/ generator-fountain-*/
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+  - node test/cache/restore-node_modules.js
+  - npm install --global npm@latest
+  - npm run linkAll
+
+script:
+  - npm test
+  - node ./scripts/bin/deploy
