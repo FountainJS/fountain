@@ -41,6 +41,31 @@ exports.close = function close() {
   });
 };
 
+exports.todoTest = function todoTest(url, framework) {
+  return new Promise((resolve, reject) => {
+    console.log('Webdriver.io test "Todo MVC" on', url);
+    client
+      .url(url)
+      .waitForExist('label', 5 * 60 * 1000)
+      .getText('label').then(text => {
+        try {
+          let expected = 'Use Redux';
+          if (framework === 'angular2') {
+            expected = 'Use ngrx/store';
+          } else if (framework === 'angular1') {
+            expected = 'Use AngularJS';
+          }
+          expect(text).to.equal(expected);
+          resolve();
+          console.log('Resolved todoTest promise');
+        } catch (error) {
+          reject(error);
+          console.log('Rejected todoTest promise');
+        }
+      }, reject);
+  });
+};
+
 exports.techsTest = function techsTest(url) {
   return new Promise((resolve, reject) => {
     console.log('Webdriver.io test "Techs" counting <h3> on', url);

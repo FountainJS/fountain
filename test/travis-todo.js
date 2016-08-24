@@ -28,10 +28,11 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
     const options = {
       framework: combination[0],
       modules: combination[1],
-      css: 'scss',
+      css: 'styl',
       js: combination[2],
-      sample: 'techs',
-      router: combination[0] === 'angular1' ? 'uirouter' : 'router'
+      sample: 'todoMVC',
+      router: combination[0] === 'angular1' ? 'uirouter' : 'router',
+      ci: 'travis'
     };
 
     describe(`tests with ${options.framework}, ${options.modules}, ${options.js}`, () => {
@@ -49,15 +50,15 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
         unit.unitTests(result);
       });
 
-      it('should run "gulp serve" and e2e on number of Techs listed', function *() {
+      it('should run "gulp serve" and e2e on Todo MVC', function *() {
         const url = yield gulp.serve();
-        yield wdio.techsTest(url);
+        yield wdio.todoTest(url, options.framework);
         gulp.killServe();
       });
 
-      it('should run "gulp serve:dist" and e2e on number of Techs listed', function *() {
+      it('should run "gulp serve:dist" and e2e Todo MVC', function *() {
         const url = yield gulp.serveDist();
-        yield wdio.techsTest(url);
+        yield wdio.todoTest(url, options.framework);
         gulp.killServe();
       });
     });

@@ -6,7 +6,6 @@ const product = require('cartesian-product');
 const gulp = require('./helpers/gulp-helper');
 const yeoman = require('./helpers/yeoman-helper');
 const wdio = require('./helpers/wdio-helper');
-const sauce = require('./helpers/saucelabs-helper');
 const linter = require('./helpers/linter-helper');
 const unit = require('./helpers/unit-helper');
 
@@ -14,7 +13,6 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
   this.timeout(0);
 
   before(function *() {
-    yield sauce.connect();
     yield wdio.init();
   });
 
@@ -47,7 +45,7 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
         yield linter.linterTest(options);
       });
 
-      it('should run "gulp test"', function *() {
+      it('should run unit tests', function *() {
         const result = yield gulp.test();
         unit.unitTests(result);
       });
@@ -68,6 +66,5 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
 
   after(function *() {
     yield wdio.close();
-    yield sauce.close();
   });
 });
