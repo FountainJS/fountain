@@ -5,7 +5,7 @@ const _ = require('lodash');
 const co = require('co');
 const helpers = require('yeoman-test');
 const Promise = require('bluebird');
-const mkdirpCb = require('mkdirp');
+const mkdirp = require('mkdirp-promise');
 const fs = require('mz/fs');
 
 const generatorPath = path.join(__dirname, '../../generator-fountain-webapp/generators/app');
@@ -13,7 +13,6 @@ const workPath = path.join(__dirname, '../../test/work');
 const depsPath = path.join(__dirname, '../../test/deps');
 const packageFolders = ['node_modules', 'bower_components', 'typings'];
 
-const mkdirp = Promise.promisify(mkdirpCb);
 const testDirectory = Promise.promisify(helpers.testDirectory);
 
 let fountain;
