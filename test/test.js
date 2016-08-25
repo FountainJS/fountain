@@ -19,7 +19,7 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
   });
 
   const combinations = product([
-    ['react', 'angular1', 'angular2'],
+    ['react', 'angular1', 'angular2', 'vue'],
     ['webpack', 'systemjs', 'inject'],
     ['babel', 'js', 'typescript']
   ])

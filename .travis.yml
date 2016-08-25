@@ -71,4 +71,6 @@ before_script:
 
 script:
   - npm test
+
+after_success:
   - node ./scripts/bin/deploy
