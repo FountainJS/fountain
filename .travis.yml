@@ -31,6 +31,7 @@ cache:
     - generator-fountain-react/node_modules
     - generator-fountain-systemjs/node_modules
     - generator-fountain-tslint/node_modules
+    - generator-fountain-vue/node_modules
     - generator-fountain-webapp/node_modules
     - generator-fountain-webpack/node_modules
     - test/deps
