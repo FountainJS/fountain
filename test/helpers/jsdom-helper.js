@@ -5,12 +5,20 @@ const virtualConsole = jsdom.createVirtualConsole().sendTo(console);
 
 exports.open = function open(url) {
   return new Promise((resolve, reject) => {
-    jsdom.env(url, ['index.js'], {virtualConsole}, (err, window) => {
-      console.log('inside jsdom');
-      if (err) {
-        reject(err);
+    jsdom.env({
+      url,
+      virtualConsole,
+      features: {
+        FetchExternalResources: ["script", "iframe"],
+        ProcessExternalResources: ["script"]
+      },
+      created(error, window) {
+        console.log('inside jsdom');
+        if (error) {
+          reject(error);
+        }
+        resolve(window);
       }
-      resolve(window);
     });
   });
 };
