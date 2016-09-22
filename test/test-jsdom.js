@@ -9,7 +9,7 @@ const linter = require('./helpers/linter-helper');
 const unit = require('./helpers/unit-helper');
 const jsdom = require('./helpers/jsdom-helper');
 
-describe('fountain travis integration test with saucelabs and webdriver.io', function () {
+describe('fountain travis integration test with jsdom', function () {
   this.timeout(0);
 
   const combinations = product([
@@ -33,9 +33,8 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
       ci: 'travis'
     };
 
-    describe(`tests with ${options.framework}, ${options.modules}, ${options.js}`, () => {
+    describe(`tests with ${options.framework}, ${options.modules}, ${options.js} travis_fold:start:${options.framework}-${options.modules}-${options.js}`, () => {
       before(function * () {
-        console.log(`travis_fold:start:${options.framework}-${options.modules}-${options.js}`);
         yield yeoman.prepare();
         yield yeoman.run(options);
       });

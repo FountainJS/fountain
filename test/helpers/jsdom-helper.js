@@ -1,3 +1,5 @@
+'use strict';
+
 const jsdom = require('jsdom');
 const expect = require('chai').expect;
 const spawn = require('cross-spawn');
