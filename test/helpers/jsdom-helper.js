@@ -80,7 +80,7 @@ function waitFor(test, retryTime, attemptsMax) {
 exports.testTechs = function testTechs(window) {
   return waitFor(() => {
     return window.document.querySelectorAll('h3');
-  }, 1000, 10)
+  }, 1000, 20)
     .then(
       elements => {
         expect(elements.length).to.equal(8);

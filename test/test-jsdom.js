@@ -33,8 +33,9 @@ describe('fountain travis integration test with jsdom', function () {
       ci: 'travis'
     };
 
-    describe(`tests with ${options.framework}, ${options.modules}, ${options.js} travis_fold:start:${options.framework}-${options.modules}-${options.js}`, () => {
+    describe(`tests with ${options.framework}, ${options.modules}, ${options.js}`, () => {
       before(function * () {
+        console.log(`travis_fold:start:${options.framework}-${options.modules}-${options.js}`);
         yield yeoman.prepare();
         yield yeoman.run(options);
       });
