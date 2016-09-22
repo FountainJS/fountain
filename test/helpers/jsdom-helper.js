@@ -1,22 +1,44 @@
 const jsdom = require('jsdom');
 const expect = require('chai').expect;
+const spawn = require('cross-spawn');
 
-const virtualConsole = jsdom.createVirtualConsole().sendTo(console);
+exports.run = function run(url) {
+  return new Promise((resolve, reject) => {
+    const result = spawn.sync('node', [`${__dirname}/jsdom-runner`, url], {stdio: 'inherit'});
+    if (result.status === 0) {
+      console.log('jsdom run success');
+      resolve();
+    } else {
+      console.log('jsdom run failed', result);
+      reject();
+    }
+  });
+};
 
 exports.open = function open(url) {
+  const virtualConsole = jsdom.createVirtualConsole().sendTo(console);
+
+  virtualConsole.on('jsdomError', error => {
+    console.error('jsdom Error', error.stack, error.detail);
+  });
+
   return new Promise((resolve, reject) => {
     jsdom.env({
       url,
       virtualConsole,
       features: {
-        FetchExternalResources: ["script", "iframe"],
-        ProcessExternalResources: ["script"]
+        FetchExternalResources: ['script'],
+        ProcessExternalResources: ['script']
       },
       created(error, window) {
-        console.log('inside jsdom');
+        console.log('jsdom started on URL', url);
         if (error) {
-          reject(error);
+          console.log('jsdom en creation error', error.stack, error.detail);
+          reject();
         }
+        window.addEventListener('error', event => {
+          console.error("Script error", event.error.stack, event.error.detail);
+        });
         resolve(window);
       }
     });
@@ -29,37 +51,41 @@ function wait(time) {
   });
 }
 
-function waitFor(test, retryTime, attempsMax) {
+function waitFor(test, retryTime, attemptsMax) {
+  console.log('[WaitFor] First try');
   const firstResult = test();
   if (firstResult.length > 0) {
     return Promise.resolve(firstResult);
   }
-  let attemps = 1;
+  let attempts = 1;
   function oneTry() {
     return wait(retryTime).then(() => {
+      console.log('[WaitFor] Try', attempts);
       const result = test();
       if (result.length > 0) {
         return result;
       }
-      attemps++;
-      console.log('nop...', attemps);
-      if (attemps >= attempsMax) {
-        throw new Error('max attemps reached');
+      attempts++;
+      if (attempts >= attemptsMax) {
+        throw new Error(`[WaitFor] Max attemps reached (${attemptsMax})`);
       }
       return oneTry();
     });
   }
-  console.log('try');
   return oneTry();
 }
 
 exports.testTechs = function testTechs(window) {
   return waitFor(() => {
     return window.document.querySelectorAll('h3');
-  }, 1000, 10).then(elements => {
-    console.log('trop bien', elements);
-    expect(elements.length).to.equal(8);
-  }).catch(error => {
-    console.log('too bad', error);
-  });
+  }, 1000, 10)
+    .then(
+      elements => {
+        expect(elements.length).to.equal(8);
+      },
+      error => {
+        console.log('Test techs error', error.stack, error.detail);
+        throw error;
+      }
+    );
 };
