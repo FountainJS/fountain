@@ -33,6 +33,7 @@
     "eslint-plugin-react": "^4.3.0",
     "fixture-stdout": "^0.2.1",
     "globby": "^4.0.0",
+    "jsdom": "swiip/jsdom#zonejs-compat-usable",
     "lodash": "^4.6.1",
     "mkdirp-promise": "^2.0.0",
     "mocha": "^2.4.5",
@@ -48,7 +49,7 @@
     "yeoman-test": "^1.1.0"
   },
   "scripts": {
-    "test": "mocha test/travis-techs",
+    "test": "mocha test/test-jsdom",
     "localTest": "mocha test/local-test",
     "linkAll": "node scripts/links",
     "unlinkAll": "node scripts/unlinks"

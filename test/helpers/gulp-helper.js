@@ -9,19 +9,23 @@ let serveProcess = null;
 
 function execServe(task) {
   return new Promise(resolve => {
-    let logs = '';
-    if (serveProcess !== null) {
-      console.warn('Server process still running !!!!');
-    }
-    serveProcess = exec('gulp', [task], {stdio: 'pipe'}).process;
-    serveProcess.stderr.pipe(process.stderr);
-    serveProcess.stdout.pipe(spy(chunk => {
-      logs += chunk.toString();
-      const result = regex.exec(logs);
-      if (result !== null) {
-        resolve(result[1]);
+    try {
+      let logs = '';
+      if (serveProcess !== null) {
+        console.warn('Server process still running !!!!');
       }
-    })).pipe(process.stdout);
+      serveProcess = exec('gulp', [task], {stdio: 'pipe'}).process;
+      serveProcess.stderr.pipe(process.stderr);
+      serveProcess.stdout.pipe(spy(chunk => {
+        logs += chunk.toString();
+        const result = regex.exec(logs);
+        if (result !== null) {
+          resolve(result[1]);
+        }
+      })).pipe(process.stdout);
+    } catch (error) {
+      console.error('Server error', error);
+    }
   });
 }
 
@@ -34,9 +38,13 @@ exports.serveDist = function serveDist() {
 };
 
 exports.killServe = function killServe() {
-  serveProcess.kill('SIGTERM');
-  serveProcess = null;
-  console.log('Gulp serve killed!');
+  try {
+    serveProcess.kill('SIGTERM');
+    serveProcess = null;
+    console.log('Gulp serve killed!');
+  } catch (error) {
+    console.error('Server kill error', error);
+  }
 };
 
 exports.test = function () {
@@ -48,8 +56,8 @@ exports.test = function () {
       logs += chunk.toString();
       const result = testRegex.exec(logs);
       if (result !== null) {
-        resolve(logs);
         testProcess.kill('SIGTERM');
+        resolve(logs);
       }
     })).pipe(process.stdout);
   });

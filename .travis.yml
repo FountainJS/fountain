@@ -39,11 +39,6 @@ cache:
 addons:
   # Install Firefox
   firefox: '46.0'
-  # Configure Sauce Labs fot e2e tests
-  sauce_connect:
-    username: "zckrs"
-    access_key:
-      secure: "GRCFdTA5lYr51KaW4UAMV/oDxnm0CoPeYs1hZ2fynvv24X9KJhpukCNZNfYBVRg31gMUxGSzPOllFaHNBoExwb7/F7nndpG2FtBMlp8K22iGYDr8flRFJhd+5KJJRO4ed7z7hfHrbIwq3E2anoByh0NIFn5YO4FDwnf2ObFlFLAtyGppcTvr/UWpqzovFZLlAwU89YRZIFh7nzFUT2IU2BEWlR0TvVIhhNflpw7oScQDNtptZbGVKrJAMWT5VO15gTd97LKjyluHedZ6xWsN8TlOG2PSykI+7YYbz5Sat9l6PfBV2G4Nk5MOXivvW5mHZmXKcdGTfAoDGu9VSYFC+JdeW6DfOvS/ALagDaqmqKUyUY9eWRmt0UEMNoKhiCCe8agW2J3SiVaGVcobtCoB01nEU9iBmaVKAoZu9HbirSyEyc4j3DuQl8gAHEm/JOoTRFVIB/R7t9DPOjuFN5tHnGwO1tjkQtjCVuIz+feC3+EL819zuYCjzJ39MbQJZIiDtrsuBTkWj/SU5ECJgLyTM+qsI87XGVhtsD4UaWTCehvjs915yyLmGwm/D7dRHtno624e0zJo2Y4HHFOcKj1YXf2DaJI8NsApcyfOSWHg/O3yTURcNC/hKQ1avPDtaLpPYG3b4bpU4ubfyZCjzgjELEC7SpiL3AV17ieBCr2h3tM="
 
 before_install:
   - export DISPLAY=:99.0
