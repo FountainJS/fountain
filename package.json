@@ -35,7 +35,7 @@
     "globby": "^6.0.0",
     "jsdom": "swiip/jsdom#zonejs-compat-usable",
     "lodash": "^4.6.1",
-    "mkdirp-promise": "^3.0.1",
+    "mkdirp-promise": "^2.0.0",
     "mocha": "^3.0.2",
     "mz": "^2.4.0",
     "rimraf-promise": "^2.0.0",
