@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "archiver": "^1.0.1",
-    "ava": "^0.16.0",
     "babel-eslint": "^6.0.0",
     "bluebird": "^3.3.5",
     "cartesian-product": "^2.1.2",
