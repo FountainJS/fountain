@@ -14,7 +14,7 @@ function execServe(task) {
       if (serveProcess !== null) {
         console.warn('Server process still running !!!!');
       }
-      serveProcess = exec('gulp', [task], {stdio: 'pipe'}).process;
+      serveProcess = exec('./node_modules/.bin/gulp', [task], {stdio: 'pipe'}).process;
       serveProcess.stderr.pipe(process.stderr);
       serveProcess.stdout.pipe(spy(chunk => {
         logs += chunk.toString();
@@ -50,7 +50,7 @@ exports.killServe = function killServe() {
 exports.test = function () {
   return new Promise(resolve => {
     let logs = '';
-    const testProcess = exec('gulp', ['test'], {stdio: 'pipe'}).process;
+    const testProcess = exec('./node_modules/.bin/gulp', ['test'], {stdio: 'pipe'}).process;
     testProcess.stderr.pipe(process.stderr);
     testProcess.stdout.pipe(spy(chunk => {
       logs += chunk.toString();
