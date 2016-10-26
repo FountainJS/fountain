@@ -23,6 +23,7 @@ cache:
     - fountain-generator/node_modules
     - generator-fountain-angular1/node_modules
     - generator-fountain-angular2/node_modules
+    - generator-fountain-backbone/node_modules
     - generator-fountain-browsersync/node_modules
     - generator-fountain-eslint/node_modules
     - generator-fountain-gulp/node_modules
