@@ -40,3 +40,6 @@
 [submodule "generator-fountain-webpack"]
 	path = generator-fountain-webpack
 	url = git@github.com:FountainJS/generator-fountain-webpack.git
+[submodule "generator-fountain-backbone"]
+	path = generator-fountain-backbone
+	url = git@github.com:RasCarlito/generator-fountain-backbone.git
