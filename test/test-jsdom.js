@@ -13,7 +13,7 @@ describe('fountain travis integration test with jsdom', function () {
   this.timeout(0);
 
   const combinations = product([
-    ['react'],
+    ['react', 'angular1'],
     ['webpack', 'systemjs', 'inject'],
     ['babel', 'js', 'typescript']
   ])
