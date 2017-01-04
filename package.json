@@ -43,8 +43,8 @@
     "semver": "^5.1.0",
     "through2-spy": "^2.0.0",
     "toposort": "^1.0.0",
-    "tslint": "^3.7.4",
-    "typescript": "^2.0.3",
+    "tslint": "^4.1.1",
+    "typescript": "^2.1.0",
     "webdriverio": "^4.0.5",
     "yeoman-test": "^1.1.0"
   },
