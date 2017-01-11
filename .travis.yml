@@ -56,6 +56,8 @@ before_cache:
 #   * Generate all symlink across generators
 #   * Install global packages needed
 before_script:
+  - sudo wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.4_amd64.deb
+  - sudo dpkg -i libicu52_52.1-3ubuntu0.4_amd64.deb
   - node test/cache/backup-node_modules.js
   - rm -rf fountain-generator/ generator-fountain-*/
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules

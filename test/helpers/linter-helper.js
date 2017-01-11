@@ -6,7 +6,7 @@ const globby = require('globby');
 const fs = require('mz/fs');
 const CLIEngine = require('eslint').CLIEngine;
 const cli = new CLIEngine({});
-const Linter = require('tslint');
+const Linter = require('tslint').Linter;
 const workPath = path.join(__dirname, '../../test/work');
 
 exports.linterTest = function *(options) {
@@ -31,14 +31,14 @@ exports.tslint = function *(framework) {
   const tslintConf = yield fs.readFile(`${workPath}/tslint.json`);
   const configuration = JSON.parse(tslintConf);
   const options = {
-    formatter: 'json',
-    configuration
+    formatter: 'json'
   };
   let failureCount = 0;
   for (const path of paths) {
     const contents = yield fs.readFile(path, 'utf8');
-    const ll = new Linter(path, contents, options);
-    const result = ll.lint();
+    const linter = new Linter(options);
+    linter.lint(path, contents, configuration);
+    const result = linter.getResult();
     failureCount += result.failureCount;
   }
   expect(failureCount).to.equal(0);
