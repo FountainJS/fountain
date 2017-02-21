@@ -17,7 +17,7 @@ describe('fountain interactive integration test with jsdom', function () {
 
   it(`should test linter on `, function * () {
     const options = yield yeoman.run();
-    yield linter.linterTest(options);
+    yield linter.linterTest(options.props);
   });
 
   it('should run unit tests', function * () {
