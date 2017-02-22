@@ -12,7 +12,7 @@ const unit = require('./helpers/unit-helper');
 describe('fountain travis integration test with saucelabs and webdriver.io', function () {
   this.timeout(0);
 
-  before(function *() {
+  before(function * () {
     yield wdio.init();
   });
 
@@ -38,27 +38,27 @@ describe('fountain travis integration test with saucelabs and webdriver.io', fun
     };
 
     describe(`tests with ${options.framework}, ${options.modules}, ${options.js}`, () => {
-      before(function *() {
+      before(function * () {
         yield yeoman.prepare();
         yield yeoman.run(options);
       });
 
-      it('should test linter', function *() {
+      it('should test linter', function * () {
         yield linter.linterTest(options);
       });
 
-      it('should run unit tests', function *() {
+      it('should run unit tests', function * () {
         const result = yield gulp.test();
         unit.unitTests(result);
       });
 
-      it('should run "gulp serve" and e2e on number of Techs listed', function *() {
+      it('should run "gulp serve" and e2e on number of Techs listed', function * () {
         const url = yield gulp.serve();
         yield wdio.techsTest(url);
         gulp.killServe();
       });
 
-      it('should run "gulp serve:dist" and e2e on number of Techs listed', function *() {
+      it('should run "gulp serve:dist" and e2e on number of Techs listed', function * () {
         const url = yield gulp.serveDist();
         yield wdio.techsTest(url);
         gulp.killServe();

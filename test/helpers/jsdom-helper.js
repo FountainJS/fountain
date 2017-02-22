@@ -39,7 +39,7 @@ exports.open = function open(url) {
           reject();
         }
         window.addEventListener('error', event => {
-          console.error("Script error", event.error.stack, event.error.detail);
+          console.error('Script error', event.error.stack, event.error.detail);
         });
         resolve(window);
       }

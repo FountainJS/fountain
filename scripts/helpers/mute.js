@@ -24,7 +24,7 @@ const writesOut = [];
 const writesErr = [];
 
 // Mute
-module.exports.mute = function () {
+module.exports.mute = function mute() {
   fixtureOut.capture(string => {
     writesOut.push({string});
 

@@ -8,13 +8,13 @@ const deps = require('./deps');
 
 const versionRegex = /("version" *: *")(\d+\.\d+\.\d+)(")/;
 
-exports.folders = function *() {
+exports.folders = function folders() {
   const folders = deps()
     .map(folder => folder.name);
   return folders;
 };
 
-exports.each = function *(callback) {
+exports.each = function * each(callback) {
   const folders = yield exports.folders();
   let results = folders.map(folder => ({
     folder,
@@ -38,23 +38,23 @@ exports.each = function *(callback) {
   return results;
 };
 
-exports.execOnEach = function *(command) {
+exports.execOnEach = function * execOnEach(command) {
   const results = yield exports.each(folder => {
     return exec(command, {cwd: folder});
   });
   return results;
 };
-exports.exec = function *(command) {
+exports.exec = function * exec(command) {
   return yield exec(command);
 };
 
-exports.readVersion = function *(folder) {
+exports.readVersion = function * readVersion(folder) {
   const file = yield fs.readFile(path.join(folder, 'package.json'));
   const version = versionRegex.exec(file)[2];
   return version;
 };
 
-exports.updateSubmoduleVersion = function *(folder, submodule, version) {
+exports.updateSubmoduleVersion = function * updateSubmoduleVersion(folder, submodule, version) {
   const regex = new RegExp(`("${submodule}" *: *")((\\^)?\\d+\\.\\d+\\.\\d+)(")`);
   const filePath = path.join(folder, 'package.json');
   const file = yield fs.readFile(filePath);
@@ -62,7 +62,7 @@ exports.updateSubmoduleVersion = function *(folder, submodule, version) {
   yield fs.writeFile(filePath, newFile);
 };
 
-exports.updateVersion = function *(folder, version) {
+exports.updateVersion = function * updateVersion(folder, version) {
   const folders = yield exports.folders();
   for (const submodule of folders) {
     yield exports.updateSubmoduleVersion(folder, submodule, version);

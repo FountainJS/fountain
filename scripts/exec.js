@@ -2,7 +2,7 @@
 
 const spawn = require('cross-spawn');
 
-module.exports = function (command, args, options) {
+module.exports = function exec(command, args, options) {
   let process = null;
   const promise = new Promise((resolve, reject) => {
     const spawnOptions = Object.assign({}, {stdio: 'inherit'}, options);

@@ -9,7 +9,7 @@ const deps = fountainDeps();
 
 const stdio = process.env.TRAVIS === 'true' ? 'ignore' : 'inherit';
 
-co(function *() {
+co(function * links() {
   try {
     for (const dep of deps) {
       const folder = path.join(__dirname, '..', dep.name);

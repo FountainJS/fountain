@@ -7,7 +7,7 @@ const fs = require('mz/fs');
 
 const deps = fountainDeps();
 
-co(function *() {
+co(function * unlinks() {
   try {
     for (const dep of deps) {
       const folder = path.join(__dirname, '..', dep.name);

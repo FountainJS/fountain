@@ -6,7 +6,7 @@ const utils = require('./utils');
 
 const version = process.argv[process.argv.length - 1];
 
-co(function *() {
+co(function * publish() {
   try {
     console.log('Checking Git repos...');
     const statusResults = yield utils.execOnEach('git status');

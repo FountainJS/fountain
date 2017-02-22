@@ -18,7 +18,7 @@ let sauceConnectProcess;
 exports.connect = function connect() {
   return sauceConnect(sclOptions).then(theProcess => {
     sauceConnectProcess = theProcess;
-    console.log("Sauce Connect ready");
+    console.log('Sauce Connect ready');
   });
 };
 

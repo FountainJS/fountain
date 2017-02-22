@@ -13,7 +13,7 @@ const zip = require('./helpers/zip');
 
 const generatorPath = path.join(__dirname, '../generator-fountain-webapp/generators/app');
 
-co(function *() {
+co(function * dist() {
   try {
     yield rimraf(path.join(__dirname, `../dist`));
 

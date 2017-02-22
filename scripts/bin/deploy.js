@@ -6,7 +6,7 @@ const exec = require('../exec');
 const cwd = path.join(__dirname, '../..');
 
 try {
-  co(function *() {
+  co(function * deploy() {
     if (!process.env.TRAVIS_TAG || !/.*\.1/.test(process.env.TRAVIS_JOB_NUMBER)) {
       console.log('Deploy on GitHub only on tags and first build');
       return;

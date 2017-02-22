@@ -21,7 +21,7 @@ exports.prepare = function prepare() {
   fountain = helpers.createGenerator('fountain-webapp:app', [generatorPath], null);
   fountain.env.cwd = workPath;
 
-  return co(function *() {
+  return co(function * () {
     yield testDirectory(workPath);
     fountain.fs.delete(`${workPath}/package.json`);
     yield mkdirp(depsPath);
@@ -37,7 +37,7 @@ exports.run = function run(prompts) {
   }
 
   const run = Promise.promisify(fountain.run.bind(fountain));
-  return co(function *() {
+  return co(function * () {
     yield run();
     return fountain;
   });
