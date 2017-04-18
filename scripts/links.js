@@ -16,7 +16,7 @@ co(function * links() {
       console.log(folder, '➜', 'npm link');
       yield exec('npm', ['link'], {cwd: folder, stdio}).promise;
       for (const sub of dep.deps) {
-        console.log(folder, '➜', `npm link ${sub}`);
+        console.log(folder, '➜', `sudo $(which npm) link ${sub}`);
         yield exec('npm', ['link', sub], {cwd: folder, stdio}).promise;
       }
     }
